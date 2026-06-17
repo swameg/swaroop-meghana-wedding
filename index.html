@@ -1495,6 +1495,60 @@
       transform: translate(-50%, 0);
     }
 
+    .info-modal {
+      position: fixed;
+      inset: 0;
+      z-index: 1600;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: clamp(14px, 3vw, 28px);
+      background: rgba(42, 23, 25, 0.66);
+      backdrop-filter: blur(10px);
+    }
+
+    .info-modal.show {
+      display: flex;
+    }
+
+    .info-modal-panel {
+      width: min(1040px, 94vw);
+      max-height: 90vh;
+      overflow-y: auto;
+      position: relative;
+      background:
+        linear-gradient(135deg, rgba(255, 252, 246, 0.98), rgba(255, 244, 235, 0.96));
+      border: 1px solid rgba(155,108,30,0.32);
+      box-shadow: 0 26px 90px rgba(0, 0, 0, 0.28);
+    }
+
+    .info-modal-close {
+      position: fixed;
+      top: max(18px, 4vh);
+      right: max(18px, 4vw);
+      z-index: 1701;
+      width: 42px;
+      height: 42px;
+      border-radius: 50%;
+      border: 1px solid rgba(155,108,30,0.28);
+      background: rgba(255, 255, 255, 0.94);
+      color: var(--maroon-dark);
+      cursor: pointer;
+      font-size: 1.45rem;
+      line-height: 1;
+      box-shadow: 0 8px 22px rgba(77, 7, 16, 0.12);
+      pointer-events: auto;
+    }
+
+    .info-modal section {
+      padding: clamp(28px, 5vw, 54px);
+    }
+
+    .info-modal .rsvp-form,
+    .info-modal .details-card {
+      box-shadow: none;
+    }
+
     .highlight-band {
       background:
         radial-gradient(circle at top left, rgba(255,255,255,0.18), transparent 32%),
@@ -1754,7 +1808,7 @@
       inset: 0;
       background: rgba(31, 41, 51, 0.58);
       backdrop-filter: blur(8px);
-      z-index: 999;
+      z-index: 1800;
       display: none;
       align-items: center;
       justify-content: center;
@@ -2716,6 +2770,22 @@
       justify-content: center;
     }
 
+    .hero .btn-row {
+      gap: 18px;
+      margin-top: 22px;
+    }
+
+    .hero .btn {
+      min-width: 190px;
+      min-height: 54px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 0.96rem;
+      font-weight: 900;
+      letter-spacing: 0.09em;
+    }
+
     .couple-portrait-wrap {
       align-self: center;
       width: min(360px, 100%);
@@ -2842,6 +2912,12 @@
 
       .hero .btn-row {
         margin-top: 10px;
+      }
+
+      .hero .btn {
+        min-height: 50px;
+        min-width: 190px;
+        font-size: 0.82rem;
       }
 
       .couple-portrait-wrap {
@@ -3173,8 +3249,8 @@
       </div>
 
       <div class="btn-row">
-        <a href="#rsvp" class="btn btn-primary">RSVP Now</a>
-        <a href="#details" class="btn btn-secondary">Wedding Details</a>
+        <button class="btn btn-primary" type="button" data-open-modal="rsvpModal">RSVP Now</button>
+        <button class="btn btn-secondary" type="button" data-open-modal="detailsModal">Wedding Details</button>
       </div>
     </div>
 
@@ -3190,129 +3266,138 @@
     </div>
   </header>
 
-  <section id="details" class="reveal">
-    <div class="details-card">
-      <div class="details-copy">
-        <h2>Wedding Details</h2>
-        <p>
-          Please join us for our Telugu Hindu wedding ceremony followed by celebration, blessings, food, and time together.
-        </p>
-        <div class="details-grid" aria-label="Wedding details">
-          <div class="detail-tile">
-            <span>Date</span>
-            <strong>Sunday, August 16, 2026</strong>
+  <div class="info-modal" id="detailsModal" aria-hidden="true">
+    <div class="info-modal-panel" role="dialog" aria-modal="true" aria-labelledby="detailsModalTitle">
+      <button class="info-modal-close" type="button" data-close-modal aria-label="Close wedding details">×</button>
+      <section id="details">
+        <div class="details-card">
+          <div class="details-copy">
+            <h2 id="detailsModalTitle">Wedding Details</h2>
+            <p>
+              Please join us for our Telugu Hindu wedding ceremony followed by celebration, blessings, food, and time together.
+            </p>
+            <div class="details-grid" aria-label="Wedding details">
+              <div class="detail-tile">
+                <span>Date</span>
+                <strong>Sunday, August 16, 2026</strong>
+              </div>
+              <div class="detail-tile">
+                <span>Time</span>
+                <strong>09:00 AM Onwards</strong>
+              </div>
+              <div class="detail-tile">
+                <span>Venue</span>
+                <strong>The Woodlands at Algonkian</strong>
+              </div>
+              <div class="detail-tile">
+                <span>City</span>
+                <strong>Sterling, Virginia</strong>
+              </div>
+            </div>
+            <div class="details-actions" aria-label="Wedding actions">
+              <a class="btn btn-primary" id="googleCalendarLink" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Swaroop%20%26%20Meghana%20Wedding&dates=20260816T130000Z/20260816T190000Z&details=Telugu%20Hindu%20wedding%20ceremony%20followed%20by%20celebration.&location=The%20Woodlands%20at%20Algonkian%2C%2047001%20Fairway%20Dr%2C%20Sterling%2C%20VA%2020165" target="_blank" rel="noopener">Add to Google Calendar</a>
+              <button class="btn btn-secondary" type="button" id="downloadCalendar">Download Calendar</button>
+              <button class="btn btn-secondary" type="button" id="shareInvite">Share Invite</button>
+            </div>
           </div>
-          <div class="detail-tile">
-            <span>Time</span>
-            <strong>09:00 AM Onwards</strong>
-          </div>
-          <div class="detail-tile">
-            <span>Venue</span>
-            <strong>The Woodlands at Algonkian</strong>
-          </div>
-          <div class="detail-tile">
-            <span>City</span>
-            <strong>Sterling, Virginia</strong>
-          </div>
-        </div>
-        <div class="details-actions" aria-label="Wedding actions">
-          <a class="btn btn-primary" id="googleCalendarLink" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Swaroop%20%26%20Meghana%20Wedding&dates=20260816T130000Z/20260816T190000Z&details=Telugu%20Hindu%20wedding%20ceremony%20followed%20by%20celebration.&location=The%20Woodlands%20at%20Algonkian%2C%2047001%20Fairway%20Dr%2C%20Sterling%2C%20VA%2020165" target="_blank" rel="noopener">Add to Google Calendar</a>
-          <button class="btn btn-secondary" type="button" id="downloadCalendar">Download Calendar</button>
-          <button class="btn btn-secondary" type="button" id="shareInvite">Share Invite</button>
-        </div>
-      </div>
 
-      <div class="map-panel" id="location">
-        <div>
-          <h3>Venue</h3>
-          <address id="venueAddress">
-            The Woodlands at Algonkian<br />
-            47001 Fairway Dr<br />
-            Sterling, VA 20165
-          </address>
-          <p>Parking details will be shared closer to the wedding day.</p>
+          <div class="map-panel" id="location">
+            <div>
+              <h3>Venue</h3>
+              <address id="venueAddress">
+                The Woodlands at Algonkian<br />
+                47001 Fairway Dr<br />
+                Sterling, VA 20165
+              </address>
+              <p>Parking details will be shared closer to the wedding day.</p>
+            </div>
+            <div class="map-actions" aria-label="Map actions">
+              <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=47001%20Fairway%20Dr%2C%20Sterling%2C%20VA%2020165" target="_blank" rel="noopener">Google Maps</a>
+              <a class="btn btn-secondary" href="https://maps.apple.com/?q=47001%20Fairway%20Dr%2C%20Sterling%2C%20VA%2020165" target="_blank" rel="noopener">Apple Maps</a>
+              <button class="btn btn-secondary" type="button" id="copyAddress">Copy Address</button>
+              <button class="btn btn-secondary" type="button" data-open-modal="rsvpModal">RSVP</button>
+            </div>
+          </div>
         </div>
-        <div class="map-actions" aria-label="Map actions">
-          <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=47001%20Fairway%20Dr%2C%20Sterling%2C%20VA%2020165" target="_blank" rel="noopener">Google Maps</a>
-          <a class="btn btn-secondary" href="https://maps.apple.com/?q=47001%20Fairway%20Dr%2C%20Sterling%2C%20VA%2020165" target="_blank" rel="noopener">Apple Maps</a>
-          <button class="btn btn-secondary" type="button" id="copyAddress">Copy Address</button>
-          <a class="btn btn-secondary" href="#rsvp">RSVP</a>
-        </div>
-      </div>
+      </section>
     </div>
-  </section>
+  </div>
 
-  <section id="rsvp" class="reveal">
-    <div class="section-heading">
-      <h2>RSVP</h2>
-      <p>Please confirm whether you can join us for the wedding day on Sunday, August 16.</p>
-      <div class="ornament"></div>
+  <div class="info-modal" id="rsvpModal" aria-hidden="true">
+    <div class="info-modal-panel" role="dialog" aria-modal="true" aria-labelledby="rsvpModalTitle">
+      <button class="info-modal-close" type="button" data-close-modal aria-label="Close RSVP">×</button>
+      <section id="rsvp">
+        <div class="section-heading">
+          <h2 id="rsvpModalTitle">RSVP</h2>
+          <p>Please confirm whether you can join us for the wedding day on Sunday, August 16.</p>
+          <div class="ornament"></div>
+        </div>
+        <div class="rsvp-deadline">Please RSVP by July 16, 2026</div>
+
+        <form class="rsvp-form" id="rsvpForm">
+          <div class="form-row">
+            <div>
+              <label for="name">Full Name</label>
+              <input type="text" id="name" name="name" placeholder="Your full name" required />
+            </div>
+            <div>
+              <label for="phone">Phone Number</label>
+              <input type="tel" id="phone" name="phone" placeholder="Your phone number" />
+            </div>
+          </div>
+
+          <label for="email">Email</label>
+          <input type="email" id="email" name="email" placeholder="Your email address" required />
+
+          <div class="form-row">
+            <div>
+              <label for="attendance">Will you attend?</label>
+              <select id="attendance" name="attendance" required>
+                <option value="">Select one</option>
+                <option value="Yes">Yes, I will attend</option>
+                <option value="No">Sorry, I cannot attend</option>
+              </select>
+            </div>
+            <div>
+              <label for="guests">Total Guests Including You</label>
+              <select id="guests" name="guests" required>
+                <option value="">Select number</option>
+                <option value="1">1</option>
+                <option value="2">2</option>
+                <option value="3">3</option>
+                <option value="4">4</option>
+                <option value="5">5</option>
+                <option value="6">6</option>
+                <option value="7">7</option>
+                <option value="8">8</option>
+                <option value="9">9</option>
+                <option value="10">10</option>
+                <option value="11">11</option>
+                <option value="12">12</option>
+                <option value="13">13</option>
+                <option value="14">14</option>
+                <option value="15">15</option>
+                <option value="16">16</option>
+                <option value="17">17</option>
+                <option value="18">18</option>
+                <option value="19">19</option>
+                <option value="20">20</option>
+              </select>
+            </div>
+          </div>
+
+          <input type="hidden" id="events_attending" name="events_attending" required />
+
+          <label for="message">Message for the couple</label>
+          <textarea id="message" name="message" placeholder="Please mention anything we should know."></textarea>
+
+          <button class="btn btn-primary" type="submit">Submit RSVP</button>
+          <div class="success-message" id="successMessage">Thank you! Your RSVP has been recorded.</div>
+        </form>
+      </section>
     </div>
-    <div class="rsvp-deadline">Please RSVP by July 16, 2026</div>
+  </div>
 
-    <form class="rsvp-form reveal" id="rsvpForm">
-      <div class="form-row">
-        <div>
-          <label for="name">Full Name</label>
-          <input type="text" id="name" name="name" placeholder="Your full name" required />
-        </div>
-        <div>
-          <label for="phone">Phone Number</label>
-          <input type="tel" id="phone" name="phone" placeholder="Your phone number" />
-        </div>
-      </div>
-
-      <label for="email">Email</label>
-      <input type="email" id="email" name="email" placeholder="Your email address" required />
-
-      <div class="form-row">
-        <div>
-          <label for="attendance">Will you attend?</label>
-          <select id="attendance" name="attendance" required>
-            <option value="">Select one</option>
-            <option value="Yes">Yes, I will attend</option>
-            <option value="No">Sorry, I cannot attend</option>
-          </select>
-        </div>
-        <div>
-          <label for="guests">Total Guests Including You</label>
-          <select id="guests" name="guests" required>
-            <option value="">Select number</option>
-            <option value="1">1</option>
-            <option value="2">2</option>
-            <option value="3">3</option>
-            <option value="4">4</option>
-            <option value="5">5</option>
-            <option value="6">6</option>
-            <option value="7">7</option>
-            <option value="8">8</option>
-            <option value="9">9</option>
-            <option value="10">10</option>
-            <option value="11">11</option>
-            <option value="12">12</option>
-            <option value="13">13</option>
-            <option value="14">14</option>
-            <option value="15">15</option>
-            <option value="16">16</option>
-            <option value="17">17</option>
-            <option value="18">18</option>
-            <option value="19">19</option>
-            <option value="20">20</option>
-          </select>
-        </div>
-      </div>
-
-      <input type="hidden" id="events_attending" name="events_attending" required />
-
-      <label for="message">Message for the couple</label>
-      <textarea id="message" name="message" placeholder="Please mention anything we should know."></textarea>
-
-      <button class="btn btn-primary" type="submit">Submit RSVP</button>
-      <div class="success-message" id="successMessage">Thank you! Your RSVP has been recorded.</div>
-    </form>
-  </section>
-
-  <a href="#rsvp" class="btn btn-primary floating-rsvp">RSVP</a>
   <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <div class="modal-overlay" id="successModal">
@@ -3454,6 +3539,74 @@
     const toast = document.getElementById('toast');
     const venueAddress = 'The Woodlands at Algonkian, 47001 Fairway Dr, Sterling, VA 20165';
     const inviteUrl = 'https://swameg.github.io/swaroop-meghana-wedding/';
+    const modalOpeners = document.querySelectorAll('[data-open-modal]');
+    const modalClosers = document.querySelectorAll('[data-close-modal]');
+    const infoModals = document.querySelectorAll('.info-modal');
+
+    function openModal(modalId) {
+      const modal = document.getElementById(modalId);
+      if (!modal) return;
+      infoModals.forEach((item) => {
+        item.classList.remove('show');
+        item.setAttribute('aria-hidden', 'true');
+      });
+      modal.classList.add('show');
+      modal.setAttribute('aria-hidden', 'false');
+      document.body.style.overflow = 'hidden';
+      const focusTarget = modal.querySelector('.info-modal-close');
+      if (focusTarget) focusTarget.focus();
+    }
+
+    function closeModal(modal) {
+      if (!modal) return;
+      modal.classList.remove('show');
+      modal.setAttribute('aria-hidden', 'true');
+      if (!document.querySelector('.info-modal.show')) {
+        document.body.style.overflow = '';
+      }
+    }
+
+    modalOpeners.forEach((opener) => {
+      opener.addEventListener('click', function () {
+        openModal(this.dataset.openModal);
+      });
+    });
+
+    modalClosers.forEach((closer) => {
+      closer.addEventListener('click', function () {
+        closeModal(this.closest('.info-modal'));
+      });
+    });
+
+    document.addEventListener('click', function (event) {
+      const closeButton = event.target.closest('[data-close-modal]');
+      if (closeButton) {
+        event.preventDefault();
+        closeModal(closeButton.closest('.info-modal'));
+      }
+    });
+
+    document.addEventListener('pointerdown', function (event) {
+      const closeButton = event.target.closest('[data-close-modal]');
+      if (closeButton) {
+        event.preventDefault();
+        closeModal(closeButton.closest('.info-modal'));
+      }
+    });
+
+    infoModals.forEach((modal) => {
+      modal.addEventListener('click', function (event) {
+        if (event.target === modal) {
+          closeModal(modal);
+        }
+      });
+    });
+
+    window.addEventListener('keydown', function (event) {
+      if (event.key === 'Escape') {
+        infoModals.forEach(closeModal);
+      }
+    });
 
     function showToast(message) {
       if (!toast) return;
@@ -3580,6 +3733,7 @@
 
         successMessage.style.display = 'block';
         successMessage.textContent = 'Thank you! Your RSVP has been submitted successfully.';
+        infoModals.forEach(closeModal);
         successModal.classList.add('show');
 
         form.reset();
