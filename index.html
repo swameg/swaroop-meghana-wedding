@@ -1457,6 +1457,22 @@
       padding: 10px 12px;
     }
 
+    .rsvp-deadline {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      margin: 0 auto 18px;
+      padding: 10px 14px;
+      border: 1px solid rgba(155,108,30,0.24);
+      background: rgba(255, 248, 233, 0.82);
+      color: var(--maroon-dark);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
     .toast {
       position: fixed;
       left: 50%;
@@ -2059,55 +2075,6 @@
       transform: scale(-1) rotate(-24deg);
     }
 
-    .floral-spray {
-      position: absolute;
-      display: grid;
-      place-items: center;
-      width: min(260px, 34vw);
-      min-height: 96px;
-      color: var(--maroon);
-      font-size: clamp(1.3rem, 2.8vw, 2.35rem);
-      letter-spacing: -0.12em;
-      opacity: 0.34;
-      text-shadow: 0 8px 20px rgba(77, 7, 16, 0.12);
-      filter: saturate(1.08);
-    }
-
-    .floral-spray::before {
-      content: '';
-      position: absolute;
-      inset: 42% 6% auto;
-      height: 1px;
-      background: linear-gradient(90deg, transparent, rgba(155,108,30,0.42), transparent);
-      transform: rotate(-8deg);
-    }
-
-    .floral-side-left {
-      top: 42%;
-      left: -74px;
-      transform: rotate(-68deg);
-    }
-
-    .floral-side-right {
-      top: 36%;
-      right: -74px;
-      transform: scaleX(-1) rotate(-68deg);
-    }
-
-    .floral-mid-left {
-      top: 72%;
-      left: -84px;
-      transform: scale(0.86) rotate(-58deg);
-      opacity: 0.28;
-    }
-
-    .floral-mid-right {
-      top: 76%;
-      right: -84px;
-      transform: scaleX(-1) scale(0.86) rotate(-58deg);
-      opacity: 0.28;
-    }
-
     .mandala-corner {
       display: none;
     }
@@ -2465,12 +2432,6 @@
         font-size: 1.9rem;
       }
 
-      .floral-spray {
-        opacity: 0.18;
-        width: 180px;
-        font-size: 1.45rem;
-      }
-
       .count-card {
         padding-inline: 2px;
       }
@@ -2611,6 +2572,10 @@
       margin-left: auto;
       margin-right: auto;
       padding: clamp(24px, 4vw, 42px);
+    }
+
+    .rsvp-deadline {
+      margin-bottom: 22px;
     }
 
     footer {
@@ -2945,10 +2910,6 @@
     <span class="floral-corner floral-top-right">🌹 🌿 🌸 🌿 🌹</span>
     <span class="floral-corner floral-bottom-left">🌸 🌿 🌹 🌿 🌸</span>
     <span class="floral-corner floral-bottom-right">🌹 🌿 🌸 🌿 🌹</span>
-    <span class="floral-spray floral-side-left">🌸 🌿 🌼 🌿 🌹</span>
-    <span class="floral-spray floral-side-right">🌹 🌿 🌼 🌿 🌸</span>
-    <span class="floral-spray floral-mid-left">🌼 🌿 🌸 🌿 🌼</span>
-    <span class="floral-spray floral-mid-right">🌼 🌿 🌹 🌿 🌼</span>
   </div>
   <div class="mandala-corner top-left"></div>
   <div class="mandala-corner bottom-right"></div>
@@ -3065,6 +3026,8 @@
       <p>Please confirm whether you can join us for the wedding day on Sunday, August 16.</p>
       <div class="ornament"></div>
     </div>
+    <div class="rsvp-deadline">Please RSVP by July 16, 2026</div>
+
     <form class="rsvp-form reveal" id="rsvpForm">
       <div class="form-row">
         <div>
