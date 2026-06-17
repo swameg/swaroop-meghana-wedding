@@ -1313,6 +1313,157 @@
       margin-bottom: 8px;
     }
 
+    .details-card {
+      display: grid;
+      grid-template-columns: minmax(0, 0.95fr) minmax(280px, 1.05fr);
+      gap: 26px;
+      align-items: stretch;
+      padding: clamp(22px, 4vw, 38px);
+      border: 1px solid rgba(155,108,30,0.28);
+      background:
+        radial-gradient(circle at top left, rgba(165, 22, 38, 0.08), transparent 35%),
+        linear-gradient(135deg, rgba(255, 252, 246, 0.98), rgba(255, 244, 235, 0.94));
+      box-shadow: 0 18px 44px rgba(77, 7, 16, 0.10);
+    }
+
+    .details-copy {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
+
+    .details-copy h2 {
+      color: var(--maroon-dark);
+      font-family: 'Great Vibes', cursive;
+      font-size: clamp(3rem, 7vw, 5rem);
+      font-weight: 400;
+      line-height: 0.95;
+      margin-bottom: 16px;
+    }
+
+    .details-copy p {
+      color: var(--muted);
+      font-size: 1.04rem;
+      max-width: 620px;
+    }
+
+    .details-grid {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 22px;
+    }
+
+    .detail-tile {
+      padding: 16px;
+      border: 1px solid rgba(155,108,30,0.20);
+      background: rgba(255, 255, 255, 0.62);
+    }
+
+    .detail-tile span {
+      display: block;
+      color: var(--gold-deep);
+      font-size: 0.72rem;
+      font-weight: 900;
+      letter-spacing: 0.13em;
+      text-transform: uppercase;
+      margin-bottom: 4px;
+    }
+
+    .detail-tile strong {
+      color: var(--maroon-dark);
+      font-size: 1rem;
+    }
+
+    .details-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 22px;
+    }
+
+    .details-actions .btn,
+    .details-actions button {
+      font-size: 0.76rem;
+      letter-spacing: 0.06em;
+      padding: 10px 14px;
+    }
+
+    .map-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 18px;
+      padding: clamp(20px, 3vw, 28px);
+      border: 1px solid rgba(165, 22, 38, 0.16);
+      background: rgba(255, 255, 255, 0.74);
+    }
+
+    .map-panel h3 {
+      color: var(--maroon);
+      font-size: clamp(1.4rem, 3vw, 1.85rem);
+      margin-bottom: 8px;
+    }
+
+    .map-panel address {
+      color: var(--muted);
+      font-style: normal;
+      line-height: 1.7;
+    }
+
+    .map-actions {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 10px;
+    }
+
+    .map-actions .btn,
+    .map-actions button {
+      width: 100%;
+      text-align: center;
+      font-size: 0.76rem;
+      letter-spacing: 0.05em;
+      padding: 10px 12px;
+    }
+
+    .rsvp-deadline {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: fit-content;
+      margin: 0 auto 18px;
+      padding: 10px 14px;
+      border: 1px solid rgba(155,108,30,0.24);
+      background: rgba(255, 248, 233, 0.82);
+      color: var(--maroon-dark);
+      font-size: 0.78rem;
+      font-weight: 900;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+    }
+
+    .toast {
+      position: fixed;
+      left: 50%;
+      bottom: 24px;
+      z-index: 1500;
+      transform: translate(-50%, 18px);
+      opacity: 0;
+      pointer-events: none;
+      padding: 11px 16px;
+      background: rgba(77, 7, 16, 0.94);
+      color: #fff8ef;
+      box-shadow: 0 12px 30px rgba(77, 7, 16, 0.24);
+      transition: opacity 0.25s ease, transform 0.25s ease;
+      font-weight: 700;
+      text-align: center;
+    }
+
+    .toast.show {
+      opacity: 1;
+      transform: translate(-50%, 0);
+    }
+
     .highlight-band {
       background:
         radial-gradient(circle at top left, rgba(255,255,255,0.18), transparent 32%),
@@ -1775,6 +1926,9 @@
 
       .photo-grid,
       .location-layout,
+      .details-card,
+      .details-grid,
+      .map-actions,
       .form-row,
       .lookup-row {
         grid-template-columns: 1fr;
@@ -2556,7 +2710,7 @@
 
       <div class="btn-row">
         <a href="#rsvp" class="btn btn-primary">RSVP Now</a>
-        <a href="#location" class="btn btn-secondary">Venue Details</a>
+        <a href="#details" class="btn btn-secondary">Wedding Details</a>
       </div>
     </div>
 
@@ -2572,46 +2726,54 @@
     </div>
   </header>
 
-  <section class="save-date-card reveal" aria-label="Save the date">
-    <div>
-      <h2>Save The Date</h2>
-      <p>August 16, 2026</p>
-    </div>
-  </section>
+  <section id="details" class="reveal">
+    <div class="details-card">
+      <div class="details-copy">
+        <h2>Wedding Details</h2>
+        <p>
+          Please join us for our Telugu Hindu wedding ceremony followed by celebration, blessings, food, and time together.
+        </p>
+        <div class="details-grid" aria-label="Wedding details">
+          <div class="detail-tile">
+            <span>Date</span>
+            <strong>Sunday, August 16, 2026</strong>
+          </div>
+          <div class="detail-tile">
+            <span>Time</span>
+            <strong>09:00 AM Onwards</strong>
+          </div>
+          <div class="detail-tile">
+            <span>Venue</span>
+            <strong>The Woodlands at Algonkian</strong>
+          </div>
+          <div class="detail-tile">
+            <span>City</span>
+            <strong>Sterling, Virginia</strong>
+          </div>
+        </div>
+        <div class="details-actions" aria-label="Wedding actions">
+          <a class="btn btn-primary" id="googleCalendarLink" href="https://calendar.google.com/calendar/render?action=TEMPLATE&text=Swaroop%20%26%20Meghana%20Wedding&dates=20260816T130000Z/20260816T190000Z&details=Telugu%20Hindu%20wedding%20ceremony%20followed%20by%20celebration.&location=The%20Woodlands%20at%20Algonkian%2C%2047001%20Fairway%20Dr%2C%20Sterling%2C%20VA%2020165" target="_blank" rel="noopener">Add to Google Calendar</a>
+          <button class="btn btn-secondary" type="button" id="downloadCalendar">Download Calendar</button>
+          <button class="btn btn-secondary" type="button" id="shareInvite">Share Invite</button>
+        </div>
+      </div>
 
-  <section id="wedding-day" class="reveal">
-    <div class="highlight-band">
-      <h2>Please Join Us For The Wedding Day</h2>
-      <p>
-        We would be honored to celebrate with you on Sunday, August 16, 2026 at The Woodlands at Algonkian in Sterling, Virginia. The morning will be a traditional Telugu Hindu wedding ceremony followed by celebration, blessings, food, and time together.
-      </p>
-    </div>
-  </section>
-
-  <section class="reveal">
-    <div class="highlight-band">
-      <h2>Celebrate With Us</h2>
-      <p>
-        Your presence means so much to us. Please RSVP so we can prepare seating, food, and wedding-day arrangements properly.
-      </p>
-    </div>
-  </section>
-
-  <section id="location" class="reveal">
-    <div class="section-heading">
-      <h2>Location</h2>
-      <p>Join us at our beautiful wedding venue in Sterling, Virginia.</p>
-      <div class="ornament"></div>
-    </div>
-
-    <div class="location-layout reveal">
-      <div class="info-card">
-        <h3>Wedding Venue</h3>
-        <p><strong>City:</strong> Sterling, Virginia</p>
-        <p><strong>Venue Name:</strong> The Woodlands at Algonkian</p>
-        <p><strong>Address:</strong><br />47001 Fairway Dr<br />Sterling, VA 20165</p>
-        <p><strong>Parking:</strong> Details will be shared closer to the wedding day.</p>
-        <a class="btn btn-primary" href="https://maps.apple.com/?q=47001%20Fairway%20Dr%2C%20Sterling%2C%20VA%2020165" target="_blank" rel="noopener">Open Directions</a>
+      <div class="map-panel" id="location">
+        <div>
+          <h3>Venue</h3>
+          <address id="venueAddress">
+            The Woodlands at Algonkian<br />
+            47001 Fairway Dr<br />
+            Sterling, VA 20165
+          </address>
+          <p>Parking details will be shared closer to the wedding day.</p>
+        </div>
+        <div class="map-actions" aria-label="Map actions">
+          <a class="btn btn-primary" href="https://www.google.com/maps/search/?api=1&query=47001%20Fairway%20Dr%2C%20Sterling%2C%20VA%2020165" target="_blank" rel="noopener">Google Maps</a>
+          <a class="btn btn-secondary" href="https://maps.apple.com/?q=47001%20Fairway%20Dr%2C%20Sterling%2C%20VA%2020165" target="_blank" rel="noopener">Apple Maps</a>
+          <button class="btn btn-secondary" type="button" id="copyAddress">Copy Address</button>
+          <a class="btn btn-secondary" href="#rsvp">RSVP</a>
+        </div>
       </div>
     </div>
   </section>
@@ -2622,6 +2784,7 @@
       <p>Please confirm whether you can join us for the wedding day on Sunday, August 16.</p>
       <div class="ornament"></div>
     </div>
+    <div class="rsvp-deadline">Please RSVP by July 16, 2026</div>
 
     <form class="rsvp-form reveal" id="rsvpForm">
       <div class="form-row">
@@ -2677,6 +2840,12 @@
 
       <input type="hidden" id="events_attending" name="events_attending" required />
 
+      <label for="guest_names">Guest Names</label>
+      <textarea id="guest_names" name="guest_names" placeholder="Please list the names of everyone included in this RSVP."></textarea>
+
+      <label for="dietary_notes">Dietary Restrictions or Accessibility Notes</label>
+      <textarea id="dietary_notes" name="dietary_notes" placeholder="Vegetarian, allergies, accessibility needs, or anything helpful for us to know."></textarea>
+
       <label for="message">Message for the couple</label>
       <textarea id="message" name="message" placeholder="Please mention anything we should know."></textarea>
 
@@ -2686,6 +2855,7 @@
   </section>
 
   <a href="#rsvp" class="btn btn-primary floating-rsvp">RSVP</a>
+  <div class="toast" id="toast" role="status" aria-live="polite"></div>
 
   <div class="modal-overlay" id="successModal">
     <div class="success-modal">
@@ -2820,6 +2990,31 @@
     const closeSuccessModal = document.getElementById('closeSuccessModal');
     const attendanceSelect = document.getElementById('attendance');
     const eventsHiddenInput = document.getElementById('events_attending');
+    const copyAddressButton = document.getElementById('copyAddress');
+    const shareInviteButton = document.getElementById('shareInvite');
+    const downloadCalendarButton = document.getElementById('downloadCalendar');
+    const toast = document.getElementById('toast');
+    const venueAddress = 'The Woodlands at Algonkian, 47001 Fairway Dr, Sterling, VA 20165';
+    const inviteUrl = 'https://swameg.github.io/swaroop-meghana-wedding/';
+
+    function showToast(message) {
+      if (!toast) return;
+      toast.textContent = message;
+      toast.classList.add('show');
+      clearTimeout(showToast.timeout);
+      showToast.timeout = setTimeout(() => {
+        toast.classList.remove('show');
+      }, 2600);
+    }
+
+    async function copyText(text, successMessageText) {
+      try {
+        await navigator.clipboard.writeText(text);
+        showToast(successMessageText);
+      } catch (error) {
+        showToast('Copy is not available in this browser.');
+      }
+    }
 
     function updateSelectedEvents() {
       if (attendanceSelect && attendanceSelect.value === 'No') {
@@ -2842,6 +3037,63 @@
         successModal.classList.remove('show');
       }
     });
+
+    if (copyAddressButton) {
+      copyAddressButton.addEventListener('click', function () {
+        copyText(venueAddress, 'Address copied.');
+      });
+    }
+
+    if (shareInviteButton) {
+      shareInviteButton.addEventListener('click', async function () {
+        const shareData = {
+          title: 'Swaroop & Meghana Wedding',
+          text: 'Join us for Swaroop and Meghana’s wedding on August 16, 2026.',
+          url: inviteUrl
+        };
+
+        if (navigator.share) {
+          try {
+            await navigator.share(shareData);
+            return;
+          } catch (error) {
+            if (error.name === 'AbortError') return;
+          }
+        }
+
+        copyText(inviteUrl, 'Invite link copied.');
+      });
+    }
+
+    if (downloadCalendarButton) {
+      downloadCalendarButton.addEventListener('click', function () {
+        const icsContent = [
+          'BEGIN:VCALENDAR',
+          'VERSION:2.0',
+          'PRODID:-//Swaroop Meghana Wedding//Invite//EN',
+          'BEGIN:VEVENT',
+          'UID:swaroop-meghana-wedding-20260816@swameg.github.io',
+          'DTSTAMP:20260616T000000Z',
+          'DTSTART:20260816T130000Z',
+          'DTEND:20260816T190000Z',
+          'SUMMARY:Swaroop & Meghana Wedding',
+          'DESCRIPTION:Telugu Hindu wedding ceremony followed by celebration.',
+          'LOCATION:The Woodlands at Algonkian, 47001 Fairway Dr, Sterling, VA 20165',
+          'END:VEVENT',
+          'END:VCALENDAR'
+        ].join('\r\n');
+        const blob = new Blob([icsContent], { type: 'text/calendar;charset=utf-8' });
+        const url = URL.createObjectURL(blob);
+        const link = document.createElement('a');
+        link.href = url;
+        link.download = 'swaroop-meghana-wedding.ics';
+        document.body.appendChild(link);
+        link.click();
+        link.remove();
+        URL.revokeObjectURL(url);
+        showToast('Calendar file downloaded.');
+      });
+    }
 
     form.addEventListener('submit', async function (event) {
       event.preventDefault();
