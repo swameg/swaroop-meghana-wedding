@@ -794,6 +794,12 @@
       overflow: hidden;
     }
 
+    @media (min-width: 801px) {
+      .couple-portrait-frame {
+        animation: portraitFloat 7s ease-in-out infinite;
+      }
+    }
+
     .couple-portrait-frame::after {
       content: '';
       position: absolute;
@@ -818,6 +824,11 @@
     @keyframes portraitGlow {
       from { opacity: 0.72; transform: scale(0.98); }
       to { opacity: 1; transform: scale(1.02); }
+    }
+
+    @keyframes portraitFloat {
+      0%, 100% { transform: translateY(0); }
+      50% { transform: translateY(-8px); }
     }
 
     .wax-seal {
@@ -1324,6 +1335,7 @@
         radial-gradient(circle at top left, rgba(165, 22, 38, 0.08), transparent 35%),
         linear-gradient(135deg, rgba(255, 252, 246, 0.98), rgba(255, 244, 235, 0.94));
       box-shadow: 0 18px 44px rgba(77, 7, 16, 0.10);
+      animation: subtleLiftIn 0.85s ease both;
     }
 
     .details-copy {
@@ -1358,6 +1370,13 @@
       padding: 16px;
       border: 1px solid rgba(155,108,30,0.20);
       background: rgba(255, 255, 255, 0.62);
+      transition: transform 0.25s ease, box-shadow 0.25s ease, border-color 0.25s ease;
+    }
+
+    .detail-tile:hover {
+      border-color: rgba(155,108,30,0.34);
+      box-shadow: 0 10px 24px rgba(77, 7, 16, 0.08);
+      transform: translateY(-3px);
     }
 
     .detail-tile span {
@@ -1397,6 +1416,18 @@
       padding: clamp(20px, 3vw, 28px);
       border: 1px solid rgba(165, 22, 38, 0.16);
       background: rgba(255, 255, 255, 0.74);
+      animation: subtleLiftIn 0.9s ease 0.08s both;
+    }
+
+    @keyframes subtleLiftIn {
+      from {
+        opacity: 0;
+        transform: translateY(14px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
     }
 
     .map-panel h3 {
@@ -2839,12 +2870,6 @@
       </div>
 
       <input type="hidden" id="events_attending" name="events_attending" required />
-
-      <label for="guest_names">Guest Names</label>
-      <textarea id="guest_names" name="guest_names" placeholder="Please list the names of everyone included in this RSVP."></textarea>
-
-      <label for="dietary_notes">Dietary Restrictions or Accessibility Notes</label>
-      <textarea id="dietary_notes" name="dietary_notes" placeholder="Vegetarian, allergies, accessibility needs, or anything helpful for us to know."></textarea>
 
       <label for="message">Message for the couple</label>
       <textarea id="message" name="message" placeholder="Please mention anything we should know."></textarea>
