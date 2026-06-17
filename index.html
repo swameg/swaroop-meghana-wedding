@@ -3065,6 +3065,79 @@
       .couple-portrait-wrap {
         width: min(300px, 82vw);
       }
+
+      .info-modal {
+        padding: 10px;
+        align-items: flex-start;
+      }
+
+      .info-modal-panel {
+        width: min(100%, 370px);
+        max-height: calc(100vh - 20px);
+        margin-top: 0;
+      }
+
+      .info-modal-close {
+        top: 12px;
+        right: 12px;
+      }
+
+      .info-modal section {
+        padding: 54px 14px 18px;
+      }
+
+      #detailsModal .details-card {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 16px;
+        padding: 18px 14px;
+      }
+
+      #detailsModal .details-copy,
+      #detailsModal .map-panel {
+        width: 100%;
+        min-width: 0;
+      }
+
+      #detailsModal .details-copy h2 {
+        font-size: clamp(2.65rem, 14vw, 3.6rem);
+        text-align: center;
+      }
+
+      #detailsModal .details-copy p {
+        text-align: center;
+        font-size: 0.98rem;
+      }
+
+      #detailsModal .details-grid,
+      #detailsModal .details-actions,
+      #detailsModal .map-actions {
+        width: 100%;
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 10px;
+      }
+
+      #detailsModal .detail-tile {
+        min-height: auto;
+        padding: 13px 14px;
+      }
+
+      #detailsModal .details-actions .btn,
+      #detailsModal .details-actions button,
+      #detailsModal .map-actions .btn,
+      #detailsModal .map-actions button {
+        width: 100%;
+        min-width: 0;
+        white-space: normal;
+        text-align: center;
+        justify-content: center;
+      }
+
+      #detailsModal .map-panel {
+        padding: 18px 14px;
+      }
     }
 
     /* Cinematic fabric curtain intro */
